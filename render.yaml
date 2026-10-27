@@ -16,8 +16,9 @@ services:
         generateValue: true
       - key: DATABASE_URL
         sync: false
+      # Netlify will proxy API requests same-origin; leave browser CORS closed.
       - key: CORS_ALLOWED_ORIGINS
-        sync: false
+        value: ""
       - key: CHATBOT_PROVIDER
         value: gemini
       - key: GEMINI_API_KEY

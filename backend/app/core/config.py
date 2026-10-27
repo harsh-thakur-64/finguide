@@ -6,7 +6,7 @@ file. No secrets are hard-coded here — see .env.example at the repo root
 for the documented set of variables.
 """
 
-from pydantic import Field, model_validator
+from pydantic import Field, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -40,6 +40,17 @@ class Settings(BaseSettings):
     # Database
     # No credential is embedded in source. Configure DATABASE_URL locally.
     database_url: str = "postgresql+psycopg://finguide@localhost:5432/finguide"
+
+    @field_validator("database_url", mode="before")
+    @classmethod
+    def use_psycopg3_for_postgres_urls(cls, value):
+        """Neon supplies postgresql:// URLs; this project installs psycopg v3."""
+        if isinstance(value, str):
+            if value.startswith("postgres://"):
+                return "postgresql+psycopg://" + value[len("postgres://"):]
+            if value.startswith("postgresql://"):
+                return "postgresql+psycopg://" + value[len("postgresql://"):]
+        return value
 
     # Development-only fallback identity (see app/core/user_context.py).
     # It is never accepted outside development.
