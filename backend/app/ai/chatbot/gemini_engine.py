@@ -55,7 +55,7 @@ _CURRENT_MARKET_PATTERNS = (
     re.compile(r"\b(which|what|any).{0,40}\b(stocks?|funds?|sips?|ipos?|bonds?|gold|nifty|sensex).{0,40}\b(performing|outperforming|top[- ]performing|doing|returns?|yield|price|open|closed|listing)\b", re.I),
 )
 _FINANCIAL_MARKET_TERMS = re.compile(
-    r"\b(stocks?|shares?|equities|funds?|mutual funds?|sips?|nifty|sensex|ipos?|bonds?|gold|nav|yields?|interest rates?|market|indices|index|rbi repo|inflation|gdp|rupee)\b",
+    r"\b(stocks?|shares?|equities|funds?|mutual funds?|sips?|nifty|sensex|ipos?|bonds?|gold|nav|yields?|interest rates?|market|indices|index|rbi|sebi|inflation|gdp|rupee)\b",
     re.I,
 )
 

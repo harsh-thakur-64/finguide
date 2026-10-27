@@ -52,7 +52,7 @@ export function OfficialUpdatesPanel({ compact = false }) {
         </p>
         <p className="official-rail-note">{updates.analysis_note}</p>
         {updates.articles.length > 0 ? (
-          <ul className="official-news-list">
+          <ul className="official-news-list" tabIndex={0} aria-label="Official financial headlines. Scroll here to view one headline at a time.">
             {updates.articles.map((article) => (
               <li key={article.id}>
                 <div className="official-news-item">
